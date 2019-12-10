@@ -23,7 +23,7 @@ IoT 기기들의 취약점 여부 판별 코드
 * Asus_Code_Execution  
   시스템 명령 섹션에서 시스템 명령을 실행할 수 있음  
   
-* Asus_XSS
+* Asus_XSS  
   Alert문을 통해 쿠키값을 얻을 수 있음  
   
   
