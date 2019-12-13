@@ -19,7 +19,7 @@ def packet(target, port, cookie):
 	try:
 		#Login
 		URL = 'http://'+target+':'+port+'/'
-		headers = {'Cookie' : 'traffic_warning_NaN=2019.11:1', 'Authorization' : 'Basic ' + cookie}
+		headers = {'Cookie' : 'Authorization' : 'Basic ' + cookie}
 		s = requests.Session()
 		req = s.get(URL, headers=headers)
 
